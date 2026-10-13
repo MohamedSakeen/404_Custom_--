@@ -1,0 +1,546 @@
+/* ==========================================================================
+   Curly404 Design System & Stylesheet (Minimal & Subdued Glow Edition)
+   Theme: Deep Developer Carbon (#0D1117 / #070B12), Terminal Mint (#63E6BE),
+          Electric Cyan (#38BDF8 / #06B6D4), Compiler Crimson (#FF7B72),
+          Lavender Purple (#BD93F9)
+   Fonts: JetBrains Mono + Inter/Geist
+   ========================================================================== */
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700;800&display=swap');
+
+:root {
+  --c404-bg-dark: #070b12;
+  --c404-bg-surface: #0d1117;
+  --c404-bg-card: #161b22;
+  --c404-border: #30363d;
+  --c404-border-subtle: #21262d;
+  
+  --c404-primary-mint: #63e6be;
+  --c404-primary-glow: rgba(99, 230, 190, 0.08);
+  --c404-accent-cyan: #38bdf8;
+  --c404-accent-emerald: #10b981;
+  --c404-purple: #bd93f9;
+  --c404-crimson: #ff7b72;
+  --c404-amber: #f59e0b;
+  
+  --c404-ruby-red: #ff2a5f;
+  --c404-ruby-glow: rgba(255, 42, 95, 0.3);
+
+  --c404-text-main: #f0f6fc;
+  --c404-text-muted: #8b949e;
+  --c404-text-dim: #484f58;
+
+  --c404-font-mono: 'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+  --c404-font-sans: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  
+  --c404-radius-sm: 4px;
+  --c404-radius-md: 8px;
+  --c404-radius-lg: 12px;
+  --c404-radius-full: 9999px;
+}
+
+/* Reset for the host */
+.curly-404-host {
+  all: initial;
+  display: block;
+  font-family: var(--c404-font-sans);
+  color: var(--c404-text-main);
+  background-color: var(--c404-bg-dark);
+  min-height: 100vh;
+  width: 100%;
+  position: relative;
+  overflow-x: hidden;
+  box-sizing: border-box;
+}
+
+.curly-404-host *,
+.curly-404-host *::before,
+.curly-404-host *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+/* Fullscreen Layout Stage */
+.c404-layout {
+  position: relative;
+  min-height: 100vh;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 2.5rem 1.5rem;
+  background-color: var(--c404-bg-dark);
+  overflow: hidden;
+}
+
+/* Background Cyber Grid Matrix */
+.c404-bg-grid {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 1;
+  background-image: 
+    radial-gradient(circle at 50% 50%, rgba(56, 189, 248, 0.02) 0%, transparent 60%),
+    linear-gradient(to right, rgba(255, 255, 255, 0.02) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
+  background-size: 100% 100%, 36px 36px, 36px 36px;
+}
+
+/* Deep Vignette Edge Shader */
+.c404-bg-vignette {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 2;
+  background: radial-gradient(ellipse 85% 85% at 50% 50%, transparent 50%, #05080e 100%);
+}
+
+/* Ambient glow reduced to subtle 15% opacity */
+.c404-ambient-glow {
+  position: absolute;
+  top: 25%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 420px;
+  height: 420px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(99, 230, 190, 0.03) 0%, rgba(6, 182, 212, 0.015) 50%, transparent 70%);
+  filter: blur(50px);
+  pointer-events: none;
+  z-index: 2;
+}
+
+/* Center Content Column */
+.c404-content {
+  position: relative;
+  z-index: 10;
+  max-width: 780px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  margin: auto 0;
+}
+
+/* Hero 404 Display - Subtle clean glow */
+.c404-hero-number {
+  font-family: var(--c404-font-mono);
+  font-size: clamp(3.75rem, 8vw, 5.5rem);
+  font-weight: 800;
+  line-height: 1;
+  letter-spacing: -0.04em;
+  color: #fff;
+  background: linear-gradient(135deg, #38bdf8 0%, #63e6be 50%, #77f9d0 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  filter: drop-shadow(0 0 6px rgba(99, 230, 190, 0.12));
+  user-select: none;
+  margin-bottom: 0.5rem;
+}
+
+.c404-num-accent {
+  background: linear-gradient(135deg, #63e6be 0%, #10b981 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  filter: drop-shadow(0 0 5px rgba(16, 185, 129, 0.15));
+}
+
+/* ==========================================================================
+   THE INTERACTIVE CURLY BRACKET CHARACTER
+   ========================================================================== */
+
+.c404-face-container {
+  position: relative;
+  margin: 1.25rem 0 1.75rem;
+  padding: 1rem 1.5rem;
+  cursor: pointer;
+  user-select: none;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  outline: none;
+  border-radius: var(--c404-radius-md);
+  transition: transform 0.2s ease, filter 0.2s ease;
+}
+
+.c404-face-container:hover {
+  transform: scale(1.02);
+}
+
+.c404-face-container:active {
+  transform: scale(0.98);
+}
+
+.c404-face-container:focus-visible {
+  box-shadow: 0 0 0 2px var(--c404-primary-mint);
+}
+
+.c404-character-wrapper {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1.1rem;
+  transition: transform 0.2s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+/* Jitter shake on click */
+@keyframes c404-jitter-shake {
+  0% { transform: translate(0, 0) rotate(0deg); }
+  20% { transform: translate(-5px, 2px) rotate(-2deg); }
+  40% { transform: translate(5px, -3px) rotate(2deg); }
+  60% { transform: translate(-3px, -2px) rotate(-1deg); }
+  80% { transform: translate(3px, 1px) rotate(1deg); }
+  100% { transform: translate(0, 0) rotate(0deg); }
+}
+
+.c404-shake-active {
+  animation: c404-jitter-shake 0.38s cubic-bezier(.36,.07,.19,.97) both;
+}
+
+/* Violent Angry Rumble Animation */
+@keyframes c404-angry-rumble-anim {
+  0% { transform: translate(0, 0) rotate(0deg) scale(1.04); }
+  15% { transform: translate(-4px, 2px) rotate(-1.5deg) scale(1.04); }
+  30% { transform: translate(4px, -2px) rotate(1.5deg) scale(1.05); }
+  45% { transform: translate(-3px, -3px) rotate(-1deg) scale(1.04); }
+  60% { transform: translate(3px, 2px) rotate(1deg) scale(1.05); }
+  75% { transform: translate(-4px, 1px) rotate(-0.8deg) scale(1.04); }
+  90% { transform: translate(3px, -1px) rotate(0.8deg) scale(1.04); }
+  100% { transform: translate(0, 0) rotate(0deg) scale(1.04); }
+}
+
+.c404-angry-rumble {
+  animation: c404-angry-rumble-anim 0.18s infinite linear;
+}
+
+/* Rage Aura Overlay */
+.c404-rage-aura {
+  position: absolute;
+  inset: -20px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(255, 42, 95, 0.15) 0%, transparent 70%);
+  filter: blur(25px);
+  opacity: 0;
+  pointer-events: none;
+  transform: scale(0.85);
+  transition: opacity 0.3s ease, transform 0.3s ease;
+  z-index: 0;
+}
+
+.is-angry .c404-rage-aura {
+  opacity: 1;
+  transform: scale(1.15);
+}
+
+/* Anger Steam Indicators (💢) */
+.c404-steam-element {
+  position: absolute;
+  top: -24px;
+  opacity: 0;
+  pointer-events: none;
+  user-select: none;
+  font-size: 1.25rem;
+  transition: opacity 0.25s ease;
+  z-index: 20;
+}
+
+.c404-steam-right {
+  right: -20px;
+}
+
+.c404-steam-left {
+  left: -20px;
+}
+
+@keyframes c404-steam-float {
+  0% { transform: translateY(4px) scale(0.7); opacity: 0; }
+  50% { opacity: 1; }
+  100% { transform: translateY(-16px) scale(1.2); opacity: 0; }
+}
+
+.is-angry .c404-steam-element {
+  opacity: 1;
+  animation: c404-steam-float 1.2s infinite ease-out;
+}
+
+.is-angry .c404-steam-left {
+  animation-delay: 0.6s;
+}
+
+.c404-steam-symbol {
+  color: #ff2a5f;
+  filter: drop-shadow(0 0 6px #ff0055);
+}
+
+/* Eyes Row */
+.c404-eyes-row {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 2.25rem;
+  position: relative;
+  z-index: 10;
+}
+
+.c404-eye-unit {
+  display: flex;
+  align-items: center;
+  font-family: var(--c404-font-mono);
+  font-weight: 700;
+  font-size: clamp(3.5rem, 6vw, 4.5rem);
+  line-height: 1;
+  color: var(--c404-accent-cyan);
+}
+
+.c404-bracket-glyph {
+  font-weight: 300;
+  color: var(--c404-accent-cyan);
+  filter: drop-shadow(0 0 4px rgba(6, 182, 212, 0.15));
+  transition: color 0.3s ease, filter 0.3s ease;
+}
+
+/* Eye Socket Container */
+.c404-eye-socket {
+  position: relative;
+  width: 2.85rem;
+  height: 3.75rem;
+  margin: 0 0.35rem;
+  border: 4px solid #67e8f9;
+  border-radius: var(--c404-radius-full);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #070b12;
+  box-shadow: 0 0 6px rgba(6, 182, 212, 0.15), inset 0 0 8px rgba(0, 0, 0, 0.8);
+  overflow: hidden;
+  transform-origin: center center;
+  transition: transform 0.08s ease-out, border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* Blinking Animation */
+.c404-eye-socket.c404-blink {
+  transform: scaleY(0.06) !important;
+}
+
+/* Slanted Angry Eyelid Overlays */
+.c404-eyelid {
+  position: absolute;
+  inset-inline: 0;
+  top: 0;
+  height: 60%;
+  background: linear-gradient(to bottom, rgba(255, 42, 95, 0.95), #070b12);
+  border-bottom: 2px solid #ff2a5f;
+  pointer-events: none;
+  z-index: 10;
+  transform: translateY(-110%);
+  transition: transform 0.25s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.c404-eyelid-left {
+  transform-origin: top left;
+}
+
+.c404-eyelid-right {
+  transform-origin: top right;
+}
+
+/* Angry Slanted Eyes State */
+.is-angry .c404-eyelid-left {
+  transform: translateY(0%) rotate(22deg) scale(1.4) !important;
+}
+
+.is-angry .c404-eyelid-right {
+  transform: translateY(0%) rotate(-22deg) scale(1.4) !important;
+}
+
+/* Pupil (Dynamic Gaze) */
+.c404-pupil {
+  width: 1rem;
+  height: 1rem;
+  border-radius: 50%;
+  background-color: var(--c404-accent-emerald);
+  box-shadow: 0 0 4px rgba(16, 185, 129, 0.25);
+  transition: transform 0.06s ease-out, background-color 0.3s ease, box-shadow 0.3s ease;
+  position: relative;
+  z-index: 5;
+}
+
+/* Mouth - Sculpted Curly Bracket Mustache/Mouth */
+.c404-mouth-wrap {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  z-index: 10;
+}
+
+.c404-mouth-bracket {
+  color: var(--c404-accent-cyan);
+  filter: drop-shadow(0 0 4px rgba(6, 182, 212, 0.15));
+  transform-origin: center center;
+  transition: transform 0.32s cubic-bezier(0.34, 1.56, 0.64, 1), color 0.3s ease, filter 0.3s ease;
+}
+
+.c404-mouth-svg {
+  width: 140px;
+  height: 52px;
+  display: block;
+}
+
+/* ==========================================================================
+   ANGRY STATE THEME OVERRIDES
+   ========================================================================== */
+
+.is-angry .c404-bracket-glyph {
+  color: #ff2a5f !important;
+  filter: drop-shadow(0 0 6px rgba(255, 42, 95, 0.4)) !important;
+}
+
+.is-angry .c404-eye-socket {
+  border-color: #ff2a5f !important;
+  box-shadow: 0 0 10px rgba(255, 42, 95, 0.35), inset 0 0 10px rgba(255, 42, 95, 0.25) !important;
+}
+
+.is-angry .c404-pupil {
+  background-color: #ff0055 !important;
+  box-shadow: 0 0 8px #ff0055, 0 0 14px rgba(255, 0, 85, 0.6) !important;
+}
+
+.is-angry .c404-mouth-bracket {
+  color: #ff0055 !important;
+  filter: drop-shadow(0 0 8px rgba(255, 0, 85, 0.45)) !important;
+  transform: scaleY(-0.75) scaleX(0.95) translateY(4px) !important;
+}
+
+/* ==========================================================================
+   MESSAGING & TEXT
+   ========================================================================== */
+
+.c404-text-block {
+  max-width: 580px;
+  margin-bottom: 2rem;
+}
+
+.c404-headline {
+  font-size: clamp(1.4rem, 3.5vw, 1.85rem);
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  color: var(--c404-text-main);
+  margin-bottom: 0.5rem;
+  line-height: 1.25;
+}
+
+/* ==========================================================================
+   ACTION BUTTONS
+   ========================================================================== */
+
+.c404-actions-group {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 0.85rem;
+  margin-bottom: 1rem;
+  width: 100%;
+}
+
+.c404-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.55rem;
+  padding: 0.7rem 1.35rem;
+  border-radius: var(--c404-radius-md);
+  font-size: 0.86rem;
+  font-weight: 600;
+  text-decoration: none;
+  cursor: pointer;
+  outline: none;
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+  user-select: none;
+}
+
+.c404-btn-icon {
+  width: 16px;
+  height: 16px;
+}
+
+/* Primary Button */
+.c404-btn-primary {
+  background: cyan;
+  color: #070b12;
+  border: 1px solid transparent;
+  box-shadow: 0 0 4px rgba(6, 182, 212, 0.18);
+}
+
+.c404-btn-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 0 8px rgba(99, 230, 190, 0.3);
+  background: rgb(0, 225, 255);
+}
+
+.c404-btn-primary:active {
+  transform: translateY(0);
+}
+
+/* Secondary Button */
+.c404-btn-secondary {
+  background: rgba(22, 27, 34, 0.85);
+  color: var(--c404-text-main);
+  border: 1px solid var(--c404-border);
+  backdrop-filter: blur(8px);
+}
+
+.c404-btn-secondary:hover {
+  background: rgba(33, 38, 45, 0.95);
+  border-color: var(--c404-accent-cyan);
+  color: #fff;
+  transform: translateY(-2px);
+  box-shadow: 0 0 8px rgba(56, 189, 248, 0.12);
+}
+
+.c404-btn-secondary:active {
+  transform: translateY(0);
+}
+
+/* Responsive adjustments */
+@media (max-width: 640px) {
+  .c404-layout {
+    padding: 1.5rem 1rem;
+  }
+  
+  .c404-eyes-row {
+    gap: 1.5rem;
+  }
+  
+  .c404-eye-socket {
+    width: 2.3rem;
+    height: 3.1rem;
+    border-width: 3px;
+  }
+  
+  .c404-pupil {
+    width: 0.8rem;
+    height: 0.8rem;
+  }
+
+  .c404-mouth-svg {
+    width: 110px;
+    height: 42px;
+  }
+
+  .c404-actions-group {
+    flex-direction: column;
+    width: 100%;
+  }
+
+  .c404-btn {
+    width: 100%;
+  }
+}

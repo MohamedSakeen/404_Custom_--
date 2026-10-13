@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>404 // Route Not Found</title>
+  <link rel="stylesheet" href="curly-404.css" />
+</head>
+<body>
+  <!-- Container where Curly404 mounts -->
+  <div id="app"></div>
+
+  <script type="module">
+    import { Curly404 } from './curly-404.js';
+
+    // Initialize the minimal Curly404 component
+    const page = new Curly404({
+      target: '#app',
+      title: '404',
+      headline: 'Looks like you reached an unhandled exception.',
+      description: 'The requested route does not exist or has been garbage collected. Even our bracket parser is utterly perplexed.',
+      homeUrl: '#dashboard',
+      homeText: 'Back to Dashboard',
+      docsUrl: '#docs',
+      docsText: 'Documentation',
+      onAction: ({ type }) => {
+        console.log(`Action triggered: ${type}`);
+      }
+    });
+  </script>
+</body>
+</html>
